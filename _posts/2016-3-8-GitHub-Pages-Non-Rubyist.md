@@ -376,6 +376,35 @@ To run the program, enter `python hello.py` in a terminal session.
 Now when you look at the home page it will look the same as it did earlier. The Python subpage will have a smaller header, allowing readers to focus more on the specific content of that page:
 
 ![Python README with smaller header]({{ site.baseurl }}/images/github_pages_non_rubyist/python_theme_subpage.png)
+
+### Adding more pages
+
+Now it's fairly straightforward to add the Ruby and C pages. We'll just need  Let's make directories for each of these pages, and copy the *README.md* files into them from the master branch:
+
+    hello_worlds$ mkdir ruby c
+    hello_worlds$ git checkout master ruby/README.md
+    hello_worlds$ git checkout master c/README.md
+
+Let's add the front matter to *ruby/README.md*:
+
+```
+---
+layout: default
+title: Hello World in Ruby
+---
+
+Hello World is one line in Ruby. The method `puts()` displays the given string "Hello Ruby world!" to the screen and adds a newline as well.
+
+To run the program, enter `ruby hello.rb` in a terminal session.
+```
+
+We specify the default layout and the title for this page. We remove the title we had in the body of the file, and we remove the link to the home page from the body as well. Now you can go to the home page and click on the link to Ruby, and you should see a clean page for Ruby just as we saw for Python:
+
+![Ruby README page]({{ site.baseurl }}/images/github_pages_non_rubyist/ruby_readme.png)
+    
+### Making new pages
+
+Start with the front matter, and write your page in markdown. Let's add a java or javascript page. (worthwhile? would need to add code to master branch, so just describe it)s
     
 References
 ===
