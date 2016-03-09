@@ -255,7 +255,41 @@ Now when we look at the *python/README.html* file in the browser, it uses the sa
 
 ![Python README with theme]({{ site.baseurl }}/images/github_pages_non_rubyist/python_readme_theme.png)
 
+### Modifying links
 
+Let's make sure the links from the home page to the subpages work, and the links back to the home page work. In index.html we have a link to the *python/README.md* page:
+
+```
+<li>Hello World in <a href="python/README.md">Python</a>.</li>
+```
+
+The page that's actually served is *python/README.html*, so all we need to do is change the *.md* to *.html*. Let's correct the other two links while we're at it:
+
+```
+<ul>
+<li>Hello World in <a href="python/README.html">Python</a>.</li>
+<li>Hello World in <a href="ruby/README.html">Ruby</a>.</li>
+<li>Hello World in <a href="c/README.html">C</a>.</li>
+</ul>
+```
+
+In *python/README.md* we have the following:
+
+```
+Return to [Hello Worlds](../README.md).
+```
+
+The home page is called *index.html* now instead of *README.md*:
+
+```
+Return to [Hello Worlds](../index.html).
+```
+
+Refresh the page, and you should be able to click back and forth between the home page and the Python page.
+
+### Modifying the theme for subpages
+
+Before we 
 
 
     
