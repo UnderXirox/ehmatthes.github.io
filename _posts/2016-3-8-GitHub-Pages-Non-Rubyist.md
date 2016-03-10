@@ -401,11 +401,31 @@ To run the program, enter `ruby hello.rb` in a terminal session.
 We specify the default layout and the title for this page. We remove the title we had in the body of the file, and we remove the link to the home page from the body as well. Now you can go to the home page and click on the link to Ruby, and you should see a clean page for Ruby just as we saw for Python:
 
 ![Ruby README page]({{ site.baseurl }}/images/github_pages_non_rubyist/ruby_readme.png)
+
+The changes to *c/README.md* are straightforward as well.
+
+### Committing and pushing changes
+
+To see your changes live, make a commit and push the `gh-pages` branch to GitHub:
+
+    hello_worlds$ git add .
+    hello_worlds$ git commit -am "Added Python, Ruby, and C pages."
+    hello_worlds$ git push origin gh-pages
     
 ### Making new pages
 
-Start with the front matter, and write your page in markdown. Let's add a java or javascript page. (worthwhile? would need to add code to master branch, so just describe it)s
-    
+To add a new page to your project's site, create a new markdown page. Start with the front matter:
+
+```
+---
+layout: default
+title: My New Page
+---
+```
+
+Then you can write markdown, and jekyll will convert your markdown to html. Whenever you push the `gh-pages` branch, GitHub will update your live pages.
+
+   
 References
 ===
 
