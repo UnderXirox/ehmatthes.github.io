@@ -8,7 +8,8 @@ I teach high school math and science at a small school in southeast Alaska. I wr
 
 [![Python Crash Course cover]({{ site.baseurl }}/images/cover.jpg)](http://nostarchpress.com/pythoncrashcourse) 
 
-### Contact me
+### Contact
 
 Email: [ehmatthes@gmail.com](mailto:ehmatthes@gmail.com)
+
 Twitter: [@ehmatthes](https://twitter.com/ehmatthes/)
