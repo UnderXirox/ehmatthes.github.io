@@ -47,17 +47,14 @@ We need to install several libraries:
 
     $ sudo apt-get install -y zlib1g-dev libssl-dev libreadline-dev
     
-Now we'll set up `rbenv`:
+Now we'll set up `rbenv` and [ruby-build](https://github.com/rbenv/ruby-build):
 
     $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
     $ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-    
-Open a new terminal window, so these changes take effect. (Can these steps be combined, then new window?) We need to install [ruby-build](https://github.com/rbenv/ruby-build), which makes the actual installation of Ruby easier:
-
     $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     
-Now you can see the versions of Ruby that are available for installation:
+Open a new terminal window, so these changes take effect. Now you can see the versions of Ruby that are available for installation:
 
     $ rbenv install -l
 
