@@ -192,7 +192,7 @@ Now let's look at *default.html*. We need to keep the parts that should be on al
 ```
 
 
-Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{% endraw %}` and `{% raw %}{{ content }}{% endraw %}`. We'll also use the `{% raw %}{{ site.baseurl }}{% endraw %}` variable to make sure stylesheets are accessible from any directory level:
+Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ page.title }}{% endraw %}` and `{% raw %}{{ content }}{% endraw %}`. We'll also use the `{% raw %}{{ site.baseurl }}{% endraw %}` variable to make sure stylesheets are accessible from any directory level:
 
 ```
 <!DOCTYPE html>
@@ -219,7 +219,7 @@ Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{%
       <h1>
 <a id="hello-worlds" class="anchor" href="#hello-worlds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>{% raw %}{{ page.title }}{% endraw %}</h1>
 
-{% raw %}{{ page.content }}{% endraw %}
+{% raw %}{{ content }}{% endraw %}
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ehmatthes/hello_worlds">Hello worlds</a> is maintained by <a href="https://github.com/ehmatthes">ehmatthes</a>.</span>
@@ -234,7 +234,9 @@ Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{%
 </html>
 ```
 
-The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When Jekyll processes a page that uses the default layout, it will use the HTML in *default.html* and fill in the values of the `page.title` and `page.content` variables. We need to modify *python/README.md* so it will be rendered with the default layout, and we need to set its page title variable:
+The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When Jekyll processes a page that uses the default layout, it will use the HTML in *default.html* and fill in the values of the `page.title` and `content` variables.
+
+We need to modify *python/README.md* so it will be rendered with the default layout, and we need to set its page title variable:
 
 ```
 ---
@@ -242,9 +244,11 @@ layout: default
 title: Hello World in Python
 ---
 
-Hello World is one line in Python. The `print()` function displays the string you specify, in this case "Hello Python world!" to the screen.
+Hello World is one line in Python:
 
-To run the program, enter `python hello.py` in a terminal session.
+    print("Hello Python world!")
+
+The `print()` function displays the string you specify, in this case "Hello Python world!" to the screen. To run the program, enter `python hello.py` in a terminal session.
 
 ---
 
