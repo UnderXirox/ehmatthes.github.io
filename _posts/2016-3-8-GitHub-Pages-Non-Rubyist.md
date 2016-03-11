@@ -193,7 +193,7 @@ Now let's look at *default.html*. We need to keep the parts that should be on al
 ```
 
 
-Now we'll replace all of the bold lines with two blocks, {% raw %}{{ title }}{% endraw %} and {% raw %}{{ content }}{% endraw %}. We'll also use the {% raw %}{{ site.baseurl }}{% endraw %} variable to make sure stylesheets are found correctly:
+Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{% endraw %}` and `{% raw %}{{ content }}{% endraw %}`. We'll also use the `{% raw %}{{ site.baseurl }}{% endraw %}` variable to make sure stylesheets are accessible from any directory level:
 
 ```
 <!DOCTYPE html>
@@ -235,7 +235,7 @@ Now we'll replace all of the bold lines with two blocks, {% raw %}{{ title }}{% 
 </html>
 ```
 
-The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When jekyll processes a page that uses the default layout, it will use the HTML in default.html and fill in the values of the {% raw %}{{ page.title }}{% endraw %} and {% raw %}{{ page.content }}{% endraw %} variables. We need to modify the python/README.md file so it will use the default layout, and we need to set its page title variable:
+The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When jekyll processes a page that uses the default layout, it will use the HTML in *default.html* and fill in the values of the `page.title` and `page.content` variables. We need to modify *python/README.md* so it will be rendered with the default layout, and we need to set its page title variable:
 
 ```
 ---
@@ -252,22 +252,25 @@ To run the program, enter `python hello.py` in a terminal session.
 Return to [Hello Worlds](../README.md).
 ```
 
-When writing markdown pages that will be processed by jekyll, we set the values for any page variables in the front matter between the first two sets of triple dashes. Here we set the `layout: default` variable and the title for the page. Jekyll will insert this value where {% raw %}{{ page.title }}{% endraw %} appears in the default.html layout. The rest of the file, after the second triple dash, will be inserted where {% raw %}{{ page.content }}{% endraw %} appears in the default layout.
+When writing markdown pages that Jekyll will process, we set the values for any page variables in the front matter between the first two sets of triple dashes. Here we set the layout to `default` and the title to *Hello World in Python*. Jekyll will insert this value whereever `{% raw %}{{ page.title }}{% endraw %}` appears in the *default.html* layout. Anything that follows the second triple dash will be inserted wherever `{% raw %}{{ page.content }}{% endraw %}` appears in the default layout.
 
-We should also make a *_config.yml* file. This is where we can define site-wide variables such as {% raw %}{{ site.baseurl }}{% endraw %}:
+We should also make a *_config.yml* file. This is where we can define site-wide variables such as `site.baseurl`:
 
     hello_worlds$ touch _config.yml
+    hello_worlds$ echo "baseurl:" >> _config.yml
 
+There's no value for `baseurl`, but it's still good to have an explicit *_config.yml* file so we're not wondering if it got deleted when we look at this project at a later time.
 
-```
-baseurl:
-```
-
-There's no value for baseurl, but it's still good to have an explicit *_config.yml* file so we're not wondering if it got deleted when we look at this project at a later time.
-
-Now when we look at the *python/README.html* file in the browser, it uses the same theme as the index page:
+Now when we look at [localhost:4000/python/README.html](http://localhost:4000/python/README.html) in the browser it uses the same theme as the index page:
 
 ![Python README with theme]({{ site.baseurl }}/images/github_pages_non_rubyist/python_readme_theme.png)
+
+Let's commit these changes:
+
+    hello_worlds$ git status
+    On branch gh-pages
+    hello_worlds$ git commit -am "blah" (anything to add?)
+    
 
 ### Modifying links
 
@@ -277,7 +280,7 @@ Let's make sure the links from the home page to the subpages work, and the links
 <li>Hello World in <a href="python/README.md">Python</a>.</li>
 ```
 
-The page that's actually served is *python/README.html*, so all we need to do is change the *.md* to *.html*. Let's correct the other two links while we're at it:
+The page that's actually served is *python/README.html*, so all we need to do is change *.md* to *.html*. Let's correct the other two links while we're at it:
 
 ```
 <ul>
@@ -345,7 +348,7 @@ Make the following changes in *default.html*:
 </html>
 ```
 
-We first link to a new stylesheet, *my_styles.css*. This is listed after the automatically generated stylesheets so we can override some aspects of the theme we adopted from GitHub. In the `page-header` section we make "Hello Worlds" a link back to the home page; the use of the `site.baseurl` variable means this link will work from any directory level. We don't want the fact this title is a link to affect its styling, so we add a class called `link-no-style` to the anchor tag. We also add a new selector `page-header-subpages` to the section, so we can override some of the header styles on subpages.
+In line blah we link to a new stylesheet, *my_styles.css*. This is listed after the automatically generated stylesheets so we can override some aspects of the theme we adopted from GitHub. In the `page-header` section we make "Hello Worlds" a link back to the home page; the use of the `site.baseurl` variable means this link will work from any directory level. We don't want the typical link style applied to the project title, so we add a class called `link-no-style` to the anchor tag. We also add a new selector `page-header-subpages` to the section, so we can override some of the header styles on subpages.
 
 Let's make the *my_styles.css* file:
 
@@ -372,9 +375,9 @@ a.link-no-style {
     padding: 0.2rem 0.1rem; } }
 ```
 
-The first selector causes links to keep their original color instead of taking on the standard blue that most links have. The three `page-header-subpages` selectors shrink the vertical and horizontal padding appropriate amounts for various display devices.
+The first selector causes links to keep their original color instead of taking on the standard blue that most links have. The three `page-header-subpages` selectors shrink the vertical and horizontal padding by appropriate amounts on various display devices.
 
-We'll no longer need a link to the home page in the body of the text, so let's simplify the *python/README.md* file:
+We no longer need a link to the home page in the body of the text, so let's simplify *python/README.md*:
 
 ```
 ---
@@ -393,13 +396,13 @@ Now when you look at the home page it will look the same as it did earlier. The 
 
 ### Adding more pages
 
-Now it's fairly straightforward to add the Ruby and C pages. We'll just need  Let's make directories for each of these pages, and copy the *README.md* files into them from the master branch:
+At this point it's fairly straightforward to add the Ruby and C pages. Let's make directories for each of these pages, and copy the *README.md* files from the master branch:
 
     hello_worlds$ mkdir ruby c
     hello_worlds$ git checkout master ruby/README.md
     hello_worlds$ git checkout master c/README.md
 
-Let's add the front matter to *ruby/README.md*:
+We need to add the front matter to *ruby/README.md*:
 
 ```
 ---
@@ -422,8 +425,13 @@ The changes to *c/README.md* are straightforward as well.
 
 To see your changes live, make a commit and push the `gh-pages` branch to GitHub:
 
+    hello_worlds$ git status
+    On branch gh-pages
     hello_worlds$ git add .
     hello_worlds$ git commit -am "Added Python, Ruby, and C pages."
+    hello_worlds$ git status
+    On gh-pages
+    (message blah)
     hello_worlds$ git push origin gh-pages
     
 ### Making new pages
@@ -437,7 +445,9 @@ title: My New Page
 ---
 ```
 
-Then you can write markdown, and jekyll will convert your markdown to html. Whenever you push the `gh-pages` branch, GitHub will update your live pages.
+Then you can simply write markdown, and Jekyll will convert your markdown to HTML. Whenever you push the `gh-pages` branch, GitHub will update your live pages.
+
+I hope you and your users enjoy your cleaner project pages!
 
    
 References
