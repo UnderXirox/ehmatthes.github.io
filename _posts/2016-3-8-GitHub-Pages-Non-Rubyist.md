@@ -78,7 +78,7 @@ Add these two lines to *Gemfile*:
     source 'https://rubygems.org'
     gem 'github-pages'
     
-Now run the following two commands in the project's root directory. This will install the `github-pages` gem and a bunch of required libraries. The seocond command will build a local version of our GitHub Pages site:
+Now run the following two commands in the project's root directory. This will install the `github-pages` gem and a bunch of required libraries. The second command will build a local version of our GitHub Pages site:
 
     hello_worlds$ bundle install
     hello_worlds$ bundle exec jekyll build --safe
@@ -94,7 +94,7 @@ You can see your site at [http://localhost:4000/](http://localhost:4000/).
 Let's see what Jekyll built for us:
 
     hello_worlds$ ls
-    blah
+    Gemfile  Gemfile.lock  index.html  params.json  _site  stylesheets
     
 There's a new directory called *_site/*. This is an auto-generated directory which contains the resources needed to serve a static site. We don't want to commit this, so let's make a *.gitignore* file and add *_site/* to it:
 
@@ -105,8 +105,8 @@ Let's commit the changes we've made so far:
 
     hello_worlds$ git status
     On branch gh-pages
-    hello_worlds$ git add . (necessary?)
-    hello_worlds$ git commit -am "Added .gitignore, blah."
+    hello_worlds$ git add .
+    hello_worlds$ git commit -am "Added .gitignore, set up github-pages."
 
 Adding more pages
 ---
@@ -133,6 +133,8 @@ Now we'll modify *python/README.md* slightly so jekyll processes the file and se
 Now visit [http://localhost:4000/python/README.html](http://localhost:4000/python/README.html). The triple dash header tells Jekyll to process the markdown file and render it as an HTML page.
 
 ![Python README.html]({{ site.baseurl }}/images/github_pages_non_rubyist/python_readme_html.png)
+
+Some characters may not render properly, but they'll display properly by the time we're finished styling the page.
 
 ### Using a layout
 
@@ -199,10 +201,10 @@ Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{%
     <meta charset="UTF-8">
     <title>Hello worlds by ehmatthes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/normalize.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/github-light.css" media="screen">
   </head>
   <body>
     <section class="page-header">
@@ -215,9 +217,9 @@ Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{%
 
     <section class="main-content">
       <h1>
-<a id="hello-worlds" class="anchor" href="#hello-worlds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>{{ page.title }}</h1>
+<a id="hello-worlds" class="anchor" href="#hello-worlds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>{% raw %}{{ page.title }}{% endraw %}</h1>
 
-{{ content }}
+{% raw %}{{ page.content }}{% endraw %}
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ehmatthes/hello_worlds">Hello worlds</a> is maintained by <a href="https://github.com/ehmatthes">ehmatthes</a>.</span>
@@ -232,7 +234,7 @@ Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ title }}{%
 </html>
 ```
 
-The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When jekyll processes a page that uses the default layout, it will use the HTML in *default.html* and fill in the values of the `page.title` and `page.content` variables. We need to modify *python/README.md* so it will be rendered with the default layout, and we need to set its page title variable:
+The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When Jekyll processes a page that uses the default layout, it will use the HTML in *default.html* and fill in the values of the `page.title` and `page.content` variables. We need to modify *python/README.md* so it will be rendered with the default layout, and we need to set its page title variable:
 
 ```
 ---
