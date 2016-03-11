@@ -389,9 +389,11 @@ layout: default
 title: Hello World in Python
 ---
 
-Hello World is one line in Python. The `print()` function displays the string you specify, in this case "Hello Python world!" to the screen.
+Hello World is one line in Python:
 
-To run the program, enter `python hello.py` in a terminal session.
+    print("Hello Python world!")
+
+The `print()` function displays the string you specify, in this case "Hello Python world!" to the screen. To run the program, enter `python hello.py` in a terminal session.
 ```
 
 Now when you look at the home page it will look the same as it did earlier. The Python subpage will have a smaller header, allowing readers to focus more on the specific content of that page:
@@ -414,9 +416,11 @@ layout: default
 title: Hello World in Ruby
 ---
 
-Hello World is one line in Ruby. The method `puts()` displays the given string "Hello Ruby world!" to the screen and adds a newline as well.
+Hello World is one line in Ruby:
 
-To run the program, enter `ruby hello.rb` in a terminal session.
+    puts("Hello Ruby world!")
+
+The method `puts()` displays the given string "Hello Ruby world!" to the screen and adds a newline as well. To run the program, enter `ruby hello.rb` in a terminal session.
 ```
 
 We specify the default layout and the title for this page. We remove the title we had in the body of the file, and we remove the link to the home page from the body as well. Now you can go to the home page and click on the link to Ruby, and you should see a clean page for Ruby just as we saw for Python:
@@ -435,7 +439,6 @@ To see your changes live, make a commit and push the `gh-pages` branch to GitHub
     hello_worlds$ git commit -am "Added Python, Ruby, and C pages."
     hello_worlds$ git status
     On gh-pages
-    (message blah)
     hello_worlds$ git push origin gh-pages
     
 ### Making new pages
