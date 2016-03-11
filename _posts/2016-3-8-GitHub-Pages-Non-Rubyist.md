@@ -272,7 +272,8 @@ Let's commit these changes:
 
     hello_worlds$ git status
     On branch gh-pages
-    hello_worlds$ git commit -am "blah" (anything to add?)
+    hello_worlds$ git add .
+    hello_worlds$ git commit -am "Python readme uses layout theme."
     
 
 ### Modifying links
@@ -320,23 +321,23 @@ Make the following changes in *default.html*:
     <meta charset="UTF-8">
     <title>Hello worlds by ehmatthes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/normalize.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/my_styles.css">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{ site.baseurl }}{% endraw %}/stylesheets/my_styles.css">
   </head>
   <body>
     <section class="page-header page-header-subpages">
-      <h1 class="project-name"><a href="{{ site.baseurl }}/index.html" class="link-no-style">Hello worlds</a></h1>
+      <h1 class="project-name"><a href="{% raw %}{{ site.baseurl }}{% endraw %}/index.html" class="link-no-style">Hello worlds</a></h1>
       <h2 class="project-tagline">Hello World in a variety of languages.</h2>
     </section>
 
     <section class="main-content">
       <h1>
-<a id="hello-worlds" class="anchor" href="#hello-worlds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>{{ page.title }}</h1>
+<a id="hello-worlds" class="anchor" href="#hello-worlds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>{% raw %}{{ page.title }}{% endraw %}</h1>
 
-{{ content }}
+{% raw %}{{ content }}{% endraw %}
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ehmatthes/hello_worlds">Hello worlds</a> is maintained by <a href="https://github.com/ehmatthes">ehmatthes</a>.</span>
@@ -457,6 +458,4 @@ References
 ===
 
 - [https://gorails.com/setup/ubuntu/14.04](https://gorails.com/setup/ubuntu/14.04)
-- [https://github.com/rbenv/rbenv](https://github.com/rbenv/rbenv)
-
-
+- [https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/)
