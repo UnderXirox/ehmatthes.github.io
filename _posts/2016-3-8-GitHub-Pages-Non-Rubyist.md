@@ -27,7 +27,7 @@ The resulting page is much cleaner:
 
 If your project only needs a single page, you're finished. Any time you update your project's README, repeat these steps and you'll have an updated project page as well. But many projects benefit from additional pages, so let's add a few pages using a template.
 
-Building additional pages
+Setting up a GitHub Pages development environment
 ---
 
 When we used GitHub's page generator, a new branch called *gh-pages* was created in our project's repository. Let's fetch this branch, and work with it locally:
@@ -47,7 +47,7 @@ We need to install several libraries:
 
     $ sudo apt-get install -y zlib1g-dev libssl-dev libreadline-dev
     
-Now we'll set up `rbenv` and [ruby-build](https://github.com/rbenv/ruby-build):
+If you're typing these commands by hand, note there's a one before the g in `zlib1g-dev`, not the letter l. Now we'll set up `rbenv` and [ruby-build](https://github.com/rbenv/ruby-build):
 
     $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -108,10 +108,10 @@ Let's commit the changes we've made so far:
     hello_worlds$ git add .
     hello_worlds$ git commit -am "Added .gitignore, set up github-pages."
 
-Adding more pages
+Building additional pages
 ---
 
-With jekyll serving our pages locally, we can build out the rest of the pages and then push them live. To match our project's directory structure we'll make three directories. Let's start with the *python* directory:
+With Jekyll serving our pages locally, we can build out the rest of the pages and then push them live. To match our project's directory structure we'll make three directories. Let's start with the *python* directory:
 
     hello_worlds$ mkdir python
 
@@ -119,11 +119,11 @@ Let's copy the *python/README.md* file into this directory. You can do this by c
 
     hello_worlds$ git checkout master python/README.md
     
-If you've stopped the jekyll server, start it again with the command `bundle exec jekyll serve`. You can visit the python README file at [http://localhost:4000/python/README.md](http://localhost:4000/python/README.md). You'll just see the raw markdown file in the browser:
+If you've stopped the Jekyll server, start it again with the command `bundle exec jekyll serve`. You can visit the python README file at [http://localhost:4000/python/README.md](http://localhost:4000/python/README.md). You'll just see the raw markdown file in the browser:
 
 ![Python README.md]({{ site.baseurl }}/images/github_pages_non_rubyist/python_readme_md.png)
 
-Now we'll modify *python/README.md* slightly so jekyll processes the file and serves it as an HTML page. Add two lines of triple dashes at the top of *python/README.md*:
+Now we'll modify *python/README.md* slightly so Jekyll processes the file and serves it as an HTML page. Add two lines of triple dashes at the top of *python/README.md*:
 
     ---
     ---
@@ -306,7 +306,7 @@ The home page is called *index.html* now instead of *README.md*:
 Return to [Hello Worlds](../index.html).
 ```
 
-Refresh the page, and you should be able to click back and forth between the home page and the Python page.
+Refresh [localhost:4000/python/README.html](localhost:4000/python/README.html), and you should be able to click back and forth between the home page and the Python page.
 
 ### Modifying the theme for subpages
 
