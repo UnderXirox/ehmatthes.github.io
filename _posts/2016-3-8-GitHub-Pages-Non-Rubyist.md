@@ -12,8 +12,11 @@ Building the Main Page
 
 Let's start out with a simple project, with a *README.md* file in the root directory. If you'd like to follow along, I made a simple project called [Hello Worlds](http://github.com/ehmatthes/hello_worlds/). It has a few Hello World programs in different languages, each in a separate directory. The project has a *README.md* file in the root directory, and one in each language's directory as well. To work with this project, fork it and make a clone on your system. I'm starting out with a fresh installation of Ubuntu 14.04, so I'll need to install git before cloning the repository:
 
-    $ sudo apt-get install git
-    $ git clone https://github.com/username/hello_worlds.git
+```shell
+$ sudo apt-get install git
+$ git clone https://github.com/username/hello_worlds.git
+```
+
 
 Note that you should be cloning your own fork of `hello_worlds`, not my repository. This way you'll be able to push your own version of GitHub pages for the project. The home page for *Hello Worlds* looks like a typical project page on GitHub:
 
@@ -32,10 +35,12 @@ Setting up a GitHub Pages development environment
 
 When we used GitHub's page generator, a new branch called *gh-pages* was created in our project's repository. Let's fetch this branch, and work with it locally:
 
-    hello_worlds$ git fetch origin gh-pages
-    hello_worlds$ git checkout gh-pages
-    hello_worlds$ ls
-    index.html  params.json  stylesheets
+```shell
+hello_worlds$ git fetch origin gh-pages
+hello_worlds$ git checkout gh-pages
+hello_worlds$ ls
+index.html  params.json  stylesheets
+```
 
 GitHub's page generator has converted the *README.md* file to an HTML file called *index.html*. It's also created a *params.json* file, and a set of stylesheets as well. You can build additional pages by writing HTML manually, but that's pretty inefficient. Let's set up Jekyll so we can create additional pages by simply writing markdown files.
 
@@ -45,47 +50,65 @@ GitHub Pages requires Ruby 2.1.7 or higher, and the standard Ruby in the 14.04 a
 
 We need to install several libraries:
 
-    $ sudo apt-get install -y zlib1g-dev libssl-dev libreadline-dev
+```shell
+$ sudo apt-get install -y zlib1g-dev libssl-dev libreadline-dev
+```
     
 If you're typing these commands by hand, note there's a one before the g in `zlib1g-dev`, not the letter l. Now we'll set up `rbenv` and [ruby-build](https://github.com/rbenv/ruby-build):
 
-    $ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-    $ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-    $ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+```shell
+$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+$ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
     
 Open a new terminal window, so these changes take effect. Now you can see the versions of Ruby that are available for installation:
 
-    $ rbenv install -l
+```shell
+$ rbenv install -l
+```
 
 The latest stable version at the time of this writing is 2.3.0. I like to see that the installer is making progress, so I include the `-v` flag when using the `rbenv install` command. The final command `rbenv global 2.3.0` tells your system to use version 2.3.0 if no other version of Ruby is specified for a particular project:
 
-    $ rbenv install -v 2.3.0
-    $ rbenv global 2.3.0
+```shell
+$ rbenv install -v 2.3.0
+$ rbenv global 2.3.0
+```
     
 Now we can install [bundler](http://bundler.io/), which installs and manages Ruby gems efficiently. Note that you don't need `sudo` when installing gems with this approach.
 
-    $ gem install bundler
+```shell
+$ gem install bundler
+```
 
 Now create a file called *Gemfile* in the project's root directory, while on the `gh-pages branch`:
 
-    hello_worlds$ git status
-    On branch gh-pages
-    hello_worlds$ touch Gemfile
+```shell
+hello_worlds$ git status
+On branch gh-pages
+hello_worlds$ touch Gemfile
+```
 
 Add these two lines to *Gemfile*:
 
-    source 'https://rubygems.org'
-    gem 'github-pages'
+```
+source 'https://rubygems.org'
+gem 'github-pages'
+```
     
 Now run the following two commands in the project's root directory. This will install the `github-pages` gem and a bunch of required libraries. The second command will build a local version of our GitHub Pages site:
 
-    hello_worlds$ bundle install
-    hello_worlds$ bundle exec jekyll build --safe
+```shell
+hello_worlds$ bundle install
+hello_worlds$ bundle exec jekyll build --safe
+```
     
 Now we can start the Jekyll server, and see our pages locally:
 
-    hello_worlds$ bundle exec jekyll serve
+```shell
+hello_worlds$ bundle exec jekyll serve
+```
     
 You can see your site at [http://localhost:4000/](http://localhost:4000/).
 
@@ -93,31 +116,41 @@ You can see your site at [http://localhost:4000/](http://localhost:4000/).
 
 Let's see what Jekyll built for us:
 
-    hello_worlds$ ls
-    Gemfile  Gemfile.lock  index.html  params.json  _site  stylesheets
+```shell
+hello_worlds$ ls
+Gemfile  Gemfile.lock  index.html  params.json  _site  stylesheets
+```
     
 There's a new directory called *_site/*. This is an auto-generated directory which contains the resources needed to serve a static site. We don't want to commit this, so let's make a *.gitignore* file and add *_site/* to it:
 
-    hello_worlds$ touch .gitignore
-    hello_worlds$ echo "_site/" >> .gitignore
+```shell
+hello_worlds$ touch .gitignore
+hello_worlds$ echo "_site/" >> .gitignore
+```
     
 Let's commit the changes we've made so far:
 
-    hello_worlds$ git status
-    On branch gh-pages
-    hello_worlds$ git add .
-    hello_worlds$ git commit -am "Added .gitignore, set up github-pages."
+```shell
+hello_worlds$ git status
+On branch gh-pages
+hello_worlds$ git add .
+hello_worlds$ git commit -am "Added .gitignore, set up github-pages."
+```
 
 Building additional pages
 ---
 
 With Jekyll serving our pages locally, we can build out the rest of the pages and then push them live. To match our project's directory structure we'll make three directories. Let's start with the *python* directory:
 
-    hello_worlds$ mkdir python
+```shell
+hello_worlds$ mkdir python
+```
 
 Let's copy the *python/README.md* file into this directory. You can do this by checking out the file from the master branch, while in the `gh-pages` branch.
 
-    hello_worlds$ git checkout master python/README.md
+```shell
+hello_worlds$ git checkout master python/README.md
+```
     
 If you've stopped the Jekyll server, start it again with the command `bundle exec jekyll serve`. You can visit the python README file at [http://localhost:4000/python/README.md](http://localhost:4000/python/README.md). You'll just see the raw markdown file in the browser:
 
@@ -125,10 +158,12 @@ If you've stopped the Jekyll server, start it again with the command `bundle exe
 
 Now we'll modify *python/README.md* slightly so Jekyll processes the file and serves it as an HTML page. Add two lines of triple dashes at the top of *python/README.md*:
 
-    ---
-    ---
-    Hello World in Python
-    ===
+```
+---
+---
+Hello World in Python
+===
+```
     
 Now visit [http://localhost:4000/python/README.html](http://localhost:4000/python/README.html). The triple dash header tells Jekyll to process the markdown file and render it as an HTML page.
 
@@ -140,12 +175,14 @@ Some characters may not render properly, but they'll display properly by the tim
 
 We'd like to apply the same theme to all of our pages. We can do this using layouts. Make a *_layouts* directory. Then copy the index file to the *_layouts* directory, with the name *default.html*:
 
-    hello_worlds$ mkdir _layouts
-    hello_worlds$ cp index.html _layouts/default.html
+```shell
+hello_worlds$ mkdir _layouts
+hello_worlds$ cp index.html _layouts/default.html
+```
     
 Now let's look at *default.html*. We need to keep the parts that should be on all pages, and make space for the content that will change from page to page. Everything in bold is content that should be defined by each individual page; everything that's not bold will be part of the default layout template:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -191,10 +228,9 @@ Now let's look at *default.html*. We need to keep the parts that should be on al
 </html>
 ```
 
-
 Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ page.title }}{% endraw %}` and `{% raw %}{{ content }}{% endraw %}`. We'll also use the `{% raw %}{{ site.baseurl }}{% endraw %}` variable to make sure stylesheets are accessible from any directory level:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -259,8 +295,10 @@ When writing markdown pages that Jekyll will process, we set the values for any 
 
 We should also make a *_config.yml* file. This is where we can define site-wide variables such as `site.baseurl`:
 
-    hello_worlds$ touch _config.yml
-    hello_worlds$ echo "baseurl:" >> _config.yml
+```shell
+hello_worlds$ touch _config.yml
+hello_worlds$ echo "baseurl:" >> _config.yml
+```
 
 There's no value for `baseurl`, but it's still good to have an explicit *_config.yml* file so we're not wondering if it got deleted when we look at this project at a later time.
 
@@ -270,23 +308,24 @@ Now when we look at [localhost:4000/python/README.html](http://localhost:4000/py
 
 Let's commit these changes:
 
-    hello_worlds$ git status
-    On branch gh-pages
-    hello_worlds$ git add .
-    hello_worlds$ git commit -am "Python readme uses layout theme."
-    
+```shell
+hello_worlds$ git status
+On branch gh-pages
+hello_worlds$ git add .
+hello_worlds$ git commit -am "Python readme uses layout theme."
+```    
 
 ### Modifying links
 
 Let's make sure the links from the home page to the subpages work, and the links back to the home page work. In index.html we have a link to the *python/README.md* page:
 
-```
+```html
 <li>Hello World in <a href="python/README.md">Python</a>.</li>
 ```
 
 The page that's actually served is *python/README.html*, so all we need to do is change *.md* to *.html*. Let's correct the other two links while we're at it:
 
-```
+```html
 <ul>
 <li>Hello World in <a href="python/README.html">Python</a>.</li>
 <li>Hello World in <a href="ruby/README.html">Ruby</a>.</li>
@@ -314,7 +353,7 @@ Before we add the Ruby and C pages, let's modify the theme slightly for the subp
 
 Make the following changes in *default.html*:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -356,11 +395,13 @@ In line blah we link to a new stylesheet, *my_styles.css*. This is listed after 
 
 Let's make the *my_styles.css* file:
 
-    hello_worlds$ touch stylesheets/my_styles.css
+```shell
+hello_worlds$ touch stylesheets/my_styles.css
+```
     
 Here's what goes in *my_styles.css*:
 
-```
+```css
 a.link-no-style {
   color: inherit;
 }
@@ -404,9 +445,11 @@ Now when you look at the home page it will look the same as it did earlier. The 
 
 At this point it's fairly straightforward to add the Ruby and C pages. Let's make directories for each of these pages, and copy the *README.md* files from the master branch:
 
-    hello_worlds$ mkdir ruby c
-    hello_worlds$ git checkout master ruby/README.md
-    hello_worlds$ git checkout master c/README.md
+```shell
+hello_worlds$ mkdir ruby c
+hello_worlds$ git checkout master ruby/README.md
+hello_worlds$ git checkout master c/README.md
+```
 
 We need to add the front matter to *ruby/README.md*:
 
@@ -433,13 +476,15 @@ The changes to *c/README.md* are straightforward as well.
 
 To see your changes live, make a commit and push the `gh-pages` branch to GitHub:
 
-    hello_worlds$ git status
-    On branch gh-pages
-    hello_worlds$ git add .
-    hello_worlds$ git commit -am "Added Python, Ruby, and C pages."
-    hello_worlds$ git status
-    On gh-pages
-    hello_worlds$ git push origin gh-pages
+```shell
+hello_worlds$ git status
+On branch gh-pages
+hello_worlds$ git add .
+hello_worlds$ git commit -am "Added Python, Ruby, and C pages."
+hello_worlds$ git status
+On gh-pages
+hello_worlds$ git push origin gh-pages
+```
     
 ### Making new pages
 
