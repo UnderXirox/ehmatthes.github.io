@@ -180,7 +180,7 @@ hello_worlds$ mkdir _layouts
 hello_worlds$ cp index.html _layouts/default.html
 ```
     
-Now let's look at *default.html*. We need to keep the parts that should be on all pages, and make space for the content that will change from page to page. Everything in bold is content that should be defined by each individual page; everything that's not bold will be part of the default layout template:
+Now let's look at *default.html*. We need to keep the parts that should be on all pages, and define variables for the sections that will change from page to page:
 
 {% highlight html linenos %}
 <!DOCTYPE html>
@@ -228,7 +228,7 @@ Now let's look at *default.html*. We need to keep the parts that should be on al
 </html>
 {% endhighlight %}
 
-Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ page.title }}{% endraw %}` and `{% raw %}{{ content }}{% endraw %}`. We'll also use the `{% raw %}{{ site.baseurl }}{% endraw %}` variable to make sure stylesheets are accessible from any directory level:
+We'll use three variables. On lines 7, 9, and 10 the variable `{% raw %}{{ site.baseurl }}{% endraw %}` makes sure stylesheets are accessible from any directory level. The variable `{% raw %}{{ page.title }}{% endraw %}` on line 23 replaces the title of the page, and on line 25 `{% raw %}{{ content }}{% endraw %}` replaces the main content on each subpage:
 
 {% highlight html linenos %}
 <!DOCTYPE html>
@@ -391,7 +391,7 @@ Make the following changes in *default.html*:
 </html>
 {% endhighlight %}
 
-In line blah we link to a new stylesheet, *my_styles.css*. This is listed after the automatically generated stylesheets so we can override some aspects of the theme we adopted from GitHub. In the `page-header` section we make "Hello Worlds" a link back to the home page; the use of the `site.baseurl` variable means this link will work from any directory level. We don't want the typical link style applied to the project title, so we add a class called `link-no-style` to the anchor tag. We also add a new selector `page-header-subpages` to the section, so we can override some of the header styles on subpages.
+On line 11 we link to a new stylesheet, *my_styles.css*. This is listed after the automatically generated stylesheets so we can override some aspects of the theme we adopted from GitHub. In the `page-header` section (line 15) we make "Hello Worlds" a link back to the home page; the use of the `site.baseurl` variable means this link will work from any directory level. We don't want the typical link style applied to the project title, so we add a class called `link-no-style` to the anchor tag. We also add a new selector `page-header-subpages` to the section, so we can override some of the header styles on subpages (line 14).
 
 Let's make the *my_styles.css* file:
 
