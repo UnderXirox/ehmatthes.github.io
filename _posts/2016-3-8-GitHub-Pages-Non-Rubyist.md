@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitHub Pages for the Non-Rubyist
+title: GitHub Pages for Non-Rubyists
 ---
 
 Recently I wanted to clean up the online resources for [Python Crash Course](http://nostarchpress.com/pythoncrashcourse/). I'd been using a number of markdown files in the project's repository, but for someone new to GitHub there's a lot of visual clutter on a page like [this](https://github.com/ehmatthes/pcc). After setting up GitHub Pages, that page is [much cleaner](http://ehmatthes.github.io/pcc/). I had never written a line of Ruby code in my life before doing this, so I learned a fair bit in the process.
