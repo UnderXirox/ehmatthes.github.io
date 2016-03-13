@@ -182,7 +182,7 @@ hello_worlds$ cp index.html _layouts/default.html
     
 Now let's look at *default.html*. We need to keep the parts that should be on all pages, and make space for the content that will change from page to page. Everything in bold is content that should be defined by each individual page; everything that's not bold will be part of the default layout template:
 
-```html
+{% highlight html linenos %}
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -226,11 +226,11 @@ Now let's look at *default.html*. We need to keep the parts that should be on al
   
   </body>
 </html>
-```
+{% endhighlight %}
 
 Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ page.title }}{% endraw %}` and `{% raw %}{{ content }}{% endraw %}`. We'll also use the `{% raw %}{{ site.baseurl }}{% endraw %}` variable to make sure stylesheets are accessible from any directory level:
 
-```html
+{% highlight html linenos %}
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -268,7 +268,7 @@ Now we'll replace all of the bold lines with two blocks, `{% raw %}{{ page.title
   
   </body>
 </html>
-```
+{% endhighlight %}
 
 The `site.baseurl` variable is an empty variable for this project, but it allows the stylesheet links to be generated properly regardless of which directory level a page is saved in. When Jekyll processes a page that uses the default layout, it will use the HTML in *default.html* and fill in the values of the `page.title` and `content` variables.
 
@@ -353,7 +353,7 @@ Before we add the Ruby and C pages, let's modify the theme slightly for the subp
 
 Make the following changes in *default.html*:
 
-```html
+{% highlight html linenos %}
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -389,7 +389,7 @@ Make the following changes in *default.html*:
   
   </body>
 </html>
-```
+{% endhighlight %}
 
 In line blah we link to a new stylesheet, *my_styles.css*. This is listed after the automatically generated stylesheets so we can override some aspects of the theme we adopted from GitHub. In the `page-header` section we make "Hello Worlds" a link back to the home page; the use of the `site.baseurl` variable means this link will work from any directory level. We don't want the typical link style applied to the project title, so we add a class called `link-no-style` to the anchor tag. We also add a new selector `page-header-subpages` to the section, so we can override some of the header styles on subpages.
 
