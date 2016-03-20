@@ -30,3 +30,9 @@ Part of me wanted to ask for his code, because I was curious to see where his th
 I'm posting restore points for the next two chapters as well. Now Chris is more confident about making his way through the rest of the project, and I can easily help the next reader who gets in touch. I'll probably go through and rebuild Alien Invasion from scratch, reading along from the book and making as many meaningful restore points as possible. It also makes me feel good to have included an appendix covering the basics of version control even though the book is aimed at beginners.
 
 If you're doing some technical writing, spend some time thinking about how you can use version control to make your writing process more efficient. Your final product will be more useful for your readers, and your work in supporting them will be easier as well.
+
+- - -
+
+[Python Crash Course](http://nostarchpress.com/pythoncrashcourse/) is available through [No Starch Press](http://nostarchpress.com/pythoncrashcourse) and [Amazon](http://www.amazon.com/Python-Crash-Course-Project-Based-Introduction/dp/1593276036/). If you're new to Python, check out the set of [Beginner's Python Cheat Sheets](http://ehmatthes.github.io/pcc/cheatsheets/README.html) that accompany the book.
+
+[![Python Crash Course cover]({{ site.baseurl }}/images/cover.jpg)](http://nostarchpress.com/pythoncrashcourse)
